@@ -1,0 +1,15 @@
+Dockerfile
+.git
+.gitignore
+.idea
+.venv
+venv
+__pycache__
+Procfile
+*.csv
+*.xls*
+*.yml
+*.yaml
+.env
+* copy*.py
+*-docker

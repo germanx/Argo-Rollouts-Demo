@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: 'fail-rate'
+spec:
+  metrics:
+  - name: fail-rate
+    initialDelay: 60s
+    interval: 45s
+    successCondition: len(result) == 0 || result[0] < 0.2
+    provider:
+      prometheus:
+        address: http://localhost:9090
+        query: >+
+          (sum by (POD_NAME)(irate(app_fail_total[45s]))) / (sum by (POD_NAME)(irate(app_all_total[45s])))
